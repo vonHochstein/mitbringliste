@@ -7,8 +7,8 @@
   <meta name="description" content="Unsere gemeinsame Mitbringliste fürs Wochenende.">
   <meta name="robots" content="noindex,nofollow">
   <title>Wer bringt was mit?</title>
-  <link rel="stylesheet" href="./styles.css">
-  <script type="module" src="./app.js?v=20261006-1"></script>
+  <link rel="stylesheet" href="./styles.css?v=20261006-2">
+  <script type="module" src="./app.js?v=20261006-2"></script>
 </head>
 <body>
   <main class="shell">
@@ -34,7 +34,7 @@
     <section id="name-step" hidden aria-labelledby="name-title">
       <div class="section-heading"><p class="step">SCHRITT 1 VON 2</p><a href="#start" class="back">Zurück</a></div>
       <h2 id="name-title">Wie heißt du?</h2><p class="muted">Damit wir wissen, wer was mitbringt.</p>
-      <form id="name-form"><label for="person-name">Dein Name</label><input id="person-name" name="name" autocomplete="given-name" maxlength="80" required placeholder="Zum Beispiel Alex"><p id="name-error" class="error" role="alert"></p><button class="primary" type="submit">Weiter →</button></form>
+      <form id="name-form"><label for="person-name">Dein Name</label><select id="person-name" name="name" required><option value="">Bitte auswählen …</option></select><p id="name-error" class="error" role="alert"></p><button class="primary" type="submit">Weiter →</button></form>
     </section>
     <section id="items-step" hidden aria-labelledby="items-title">
       <div class="section-heading"><p class="step">SCHRITT 2 VON 2</p><a href="#name" class="back">Name ändern</a></div>
@@ -43,7 +43,7 @@
     </section>
     <footer>Eine Liste für uns alle. Einträge können gemeinsam geändert werden.</footer>
   </main>
-  <dialog id="edit-dialog" aria-labelledby="edit-title"><form id="edit-form"><h2 id="edit-title">Eintrag bearbeiten</h2><label for="edit-name">Name</label><input id="edit-name" maxlength="80" required><label for="edit-item">Mitbringsel</label><input id="edit-item" maxlength="160" required><label for="edit-amount">Menge</label><input id="edit-amount" maxlength="80" required><p id="edit-error" class="error" role="alert"></p><div class="dialog-actions"><button type="button" id="cancel-edit" class="secondary">Abbrechen</button><button id="save-edit" type="submit" class="primary">Speichern</button></div></form></dialog>
+  <dialog id="edit-dialog" aria-labelledby="edit-title"><form id="edit-form"><h2 id="edit-title">Eintrag bearbeiten</h2><label for="edit-name">Name</label><select id="edit-name" required><option value="">Bitte auswählen …</option></select><label for="edit-item">Mitbringsel</label><input id="edit-item" maxlength="160" required><label for="edit-amount">Menge</label><input id="edit-amount" maxlength="80" required><p id="edit-error" class="error" role="alert"></p><div class="dialog-actions"><button type="button" id="cancel-edit" class="secondary">Abbrechen</button><button id="save-edit" type="submit" class="primary">Speichern</button></div></form></dialog>
   <dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">Eintrag löschen?</h2><p id="delete-description"></p><p id="delete-error" class="error" role="alert"></p><div class="dialog-actions"><button id="cancel-delete" class="secondary" type="button">Abbrechen</button><button id="confirm-delete" class="danger" type="button">Löschen</button></div></dialog>
 </body>
 </html>

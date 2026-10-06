@@ -2,6 +2,12 @@ import { config } from "./config.js?v=20261006-1";
 import { createApi, normalizeEntry, validateEntry, validateRows, sortEntries } from "./core.js";
 
 const $ = id => document.getElementById(id);
+const participants = ["Philipp der Schöne", "Ulli", "Axel", "Philipp der Kühne", "Küste", "Karsten", "Titte", "Jensi"].sort(new Intl.Collator("de").compare);
+function populateNames(select, current = "") {
+  const names = participants.includes(current) || !current ? participants : [...participants, current].sort(new Intl.Collator("de").compare);
+  select.replaceChildren(new Option("Bitte auswählen …", ""), ...names.map(value => new Option(value, value)));
+  select.value = current;
+}
 const api = createApi(config);
 let name = "", rowCounter = 0, loadingVersion = 0, saving = false, editing = null, deleting = null, mutationBusy = false;
 const views = { start: $("start"), uebersicht: $("overview"), name: $("name-step"), dinge: $("items-step") };
@@ -92,7 +98,7 @@ function showView() {
 $("name-form").addEventListener("submit", event => {
   event.preventDefault();
   name = $("person-name").value.trim();
-  $("name-error").textContent = name ? "" : "Bitte gib deinen Namen ein.";
+  $("name-error").textContent = name ? "" : "Bitte wähle deinen Namen aus.";
   $("person-name").setAttribute("aria-invalid", String(!name));
   if (name) { notice(""); location.hash = "dinge"; }
 });
@@ -123,12 +129,12 @@ $("items-form").addEventListener("submit", async event => {
 
 function setMutationBusy(busy, dialog) {
   mutationBusy = busy;
-  dialog.querySelectorAll("input,button").forEach(control => { control.disabled = busy; });
+  dialog.querySelectorAll("input,select,button").forEach(control => { control.disabled = busy; });
 }
 
 function openEdit(entry) {
   editing = entry;
-  $("edit-name").value = entry.nutzer; $("edit-item").value = entry.mitbringsel; $("edit-amount").value = entry.anzahl;
+  populateNames($("edit-name"), entry.nutzer); $("edit-item").value = entry.mitbringsel; $("edit-amount").value = entry.anzahl;
   $("edit-error").textContent = "";
   $("edit-dialog").showModal();
 }
@@ -160,4 +166,6 @@ $("confirm-delete").addEventListener("click", async () => {
   finally { setMutationBusy(false, $("delete-dialog")); }
 });
 window.addEventListener("hashchange", showView);
+populateNames($("person-name"));
+populateNames($("edit-name"));
 resetRows(); showView();
