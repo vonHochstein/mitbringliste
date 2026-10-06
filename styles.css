@@ -51,9 +51,10 @@
 /* Route headings receive screen-reader focus without a visual control outline. */
 h2[tabindex="-1"]:focus{outline:none}
 
-.header{position:relative}
-.header .brand{max-width:calc(100% - 82px)}
-.easteregg{position:absolute;top:0;right:0;display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:0;border:0;border-radius:8px;background:transparent;overflow:hidden}
+.header{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:8px}
+.header h1{grid-column:1 / -1}
+.header .brand{max-width:100%}
+.easteregg{grid-column:2;grid-row:1;margin-right:6px;display:inline-flex;align-items:center;justify-content:center;min-height:32px;padding:0;border:0;border-radius:8px;background:transparent;overflow:hidden}
 /* The 600 px source shows y=30 to y=360: the middle 55%, starting at 5%. */
-.easteregg-crop{display:block;width:32px;aspect-ratio:332 / 330;overflow:hidden}
+.easteregg-crop{display:block;width:48px;aspect-ratio:332 / 330;overflow:hidden}
 .easteregg-crop img{display:block;width:100%;height:auto;transform:translateY(-5%)}
