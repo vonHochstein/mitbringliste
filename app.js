@@ -22,7 +22,7 @@ function addRow() {
   const number = ++rowCounter;
   const row = document.createElement("div");
   row.className = "item-row";
-  for (const [field, label, placeholder, maxLength] of [["mitbringsel", "Bringe ich mit", "z. B. Bier", 160], ["anzahl", "Menge", "2 Kästen", 80]]) {
+  for (const [field, label, placeholder, maxLength] of [["mitbringsel", "Bringe ich mit", "z. B. Pfeffi", 160], ["anzahl", "Menge", "2 Flaschen", 80]]) {
     const input = document.createElement("input");
     input.dataset.field = field;
     input.setAttribute("aria-label", `${label}, Zeile ${number}`);

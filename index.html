@@ -4,18 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#214e42">
-  <meta name="description" content="Unsere gemeinsame Mitbringliste fürs Wochenende.">
+  <meta name="description" content="Fahrt ins Ungewisse...">
   <meta name="robots" content="noindex,nofollow">
   <title>Wer bringt was mit?</title>
   <link rel="stylesheet" href="./styles.css?v=20261006-2">
-  <script type="module" src="./app.js?v=20261006-2"></script>
+  <script type="module" src="./app.js?v=20261006-3"></script>
 </head>
 <body>
   <main class="shell">
     <header class="header">
       <a class="brand" href="#start" aria-label="Zur Startseite"><span aria-hidden="true">✳</span> UNSER WOCHENENDE</a>
-      <h1>Wer bringt<br>was mit?</h1>
-      <p class="intro">Essen, Getränke und alles für eine gute Zeit.<br>Hier behalten wir gemeinsam den Überblick.</p>
+      <h1>Wer bringt was mit?</h1>
     </header>
     <p id="notice" class="notice" role="status" hidden></p>
     <section id="start" aria-labelledby="start-title">
@@ -33,15 +32,15 @@
     </section>
     <section id="name-step" hidden aria-labelledby="name-title">
       <div class="section-heading"><p class="step">SCHRITT 1 VON 2</p><a href="#start" class="back">Zurück</a></div>
-      <h2 id="name-title">Wie heißt du?</h2><p class="muted">Damit wir wissen, wer was mitbringt.</p>
+      <h2 id="name-title">Namen auswählen</h2><p class="muted">Damit wir wissen, wer was mitbringt.</p>
       <form id="name-form"><label for="person-name">Dein Name</label><select id="person-name" name="name" required><option value="">Bitte auswählen …</option></select><p id="name-error" class="error" role="alert"></p><button class="primary" type="submit">Weiter →</button></form>
     </section>
     <section id="items-step" hidden aria-labelledby="items-title">
       <div class="section-heading"><p class="step">SCHRITT 2 VON 2</p><a href="#name" class="back">Name ändern</a></div>
-      <h2 id="items-title">Was bringst du mit?</h2><p class="muted">Für <strong id="person-label"></strong>. Trage die Menge mit Einheit ein, zum Beispiel „2 Kästen“.</p>
+      <h2 id="items-title">Was bringst du mit?</h2><p class="muted">Für <strong id="person-label"></strong>. Trage die Menge mit Einheit ein, zum Beispiel „2 Flaschen“.</p>
       <form id="items-form" novalidate><div class="input-head" aria-hidden="true"><span>Bringe ich mit</span><span>Menge</span><span></span></div><div id="item-rows"></div><button id="add-row" type="button" class="add-row">＋ Weitere Zeile</button><p id="items-error" class="error" role="alert"></p><button id="save-items" type="submit" class="primary full">Alles speichern</button></form>
     </section>
-    <footer>Eine Liste für uns alle. Einträge können gemeinsam geändert werden.</footer>
+    <footer>Jeder kann alle Einträge ändern und hat Vollzugriff</footer>
   </main>
   <dialog id="edit-dialog" aria-labelledby="edit-title"><form id="edit-form"><h2 id="edit-title">Eintrag bearbeiten</h2><label for="edit-name">Name</label><select id="edit-name" required><option value="">Bitte auswählen …</option></select><label for="edit-item">Mitbringsel</label><input id="edit-item" maxlength="160" required><label for="edit-amount">Menge</label><input id="edit-amount" maxlength="80" required><p id="edit-error" class="error" role="alert"></p><div class="dialog-actions"><button type="button" id="cancel-edit" class="secondary">Abbrechen</button><button id="save-edit" type="submit" class="primary">Speichern</button></div></form></dialog>
   <dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">Eintrag löschen?</h2><p id="delete-description"></p><p id="delete-error" class="error" role="alert"></p><div class="dialog-actions"><button id="cancel-delete" class="secondary" type="button">Abbrechen</button><button id="confirm-delete" class="danger" type="button">Löschen</button></div></dialog>

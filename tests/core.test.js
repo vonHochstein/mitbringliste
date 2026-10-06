@@ -4,12 +4,12 @@ import { createApi, normalizeEntry, validateEntry, validateRows, sortEntries } f
 
 const config = { supabaseUrl: "https://test.supabase.co", publishableKey: "sb_publishable_test" };
 const id = "00000000-0000-4000-8000-000000000001";
-const entry = { nutzer: "Alex", mitbringsel: "Bier", anzahl: "2 Kästen" };
+const entry = { nutzer: "Alex", mitbringsel: "Pfeffi", anzahl: "2 Flaschen" };
 const response = data => new Response(JSON.stringify(data), { status: 200 });
 
 test("validates one, three and additional rows, ignoring fully empty rows", () => {
   for (const count of [1, 3, 7]) {
-    const result = validateRows(" Alex ", [...Array.from({ length: count }, () => ({ mitbringsel: " Bier ", anzahl: " 2 Kästen " })), { mitbringsel: "  ", anzahl: "" }]);
+    const result = validateRows(" Alex ", [...Array.from({ length: count }, () => ({ mitbringsel: " Pfeffi ", anzahl: " 2 Flaschen " })), { mitbringsel: "  ", anzahl: "" }]);
     assert.equal(result.entries.length, count);
     assert.deepEqual(result.entries[0], entry);
     assert.deepEqual(result.invalidRows, []);
