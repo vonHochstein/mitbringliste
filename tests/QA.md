@@ -19,10 +19,17 @@
 - All uniquely marked test records were removed; zero TEST rows remain.
 - GitHub Pages is enabled; the landing page is reachable at https://vonhochstein.github.io/mitbringliste/.
 
-## Pending
+## Passed on GitHub Pages (6 October 2026)
 
-- Verify the deployed database configuration and browser flow with the real database.
-- Physical second-device testing is not available in this environment; separate browser clients are used instead.
+- Live database configuration deployed successfully. App/config module URLs carry a version identifier to refresh cached setup files.
+- Verified https://vonhochstein.github.io/mitbringliste/?v=20261006-1 in the browser: empty list loads from Supabase, form creates an entry, separate browser tab reads and edits it, original tab sees updated amount after refresh.
+- Cancel deletion retains the entry; confirmed deletion removes it. Reload confirms the empty list. The online test row was removed.
+- Screenshot: local ignored `test-results/published-connected.jpg`.
+
+## Verification limits
+
+- Physical second-device testing is not available in this environment; separate browser clients were used instead. Responsive layout was tested at 320 and 390 CSS pixels using the local fixture.
+- A browser that visited before setup may briefly cache the previous landing page; the versioned URL above opens the current release directly.
 
 ## Test fixture
 
