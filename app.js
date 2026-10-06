@@ -1,4 +1,4 @@
-import { config } from "./config.js";
+import { config } from "./config.js?v=20261006-1";
 import { createApi, normalizeEntry, validateEntry, validateRows, sortEntries } from "./core.js";
 
 const $ = id => document.getElementById(id);
