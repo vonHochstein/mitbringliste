@@ -17,7 +17,7 @@
 .overview-table th{padding:5px 6px;font-size:11px}
 .overview-table td{padding:5px 6px;vertical-align:middle}
 .overview-table th:first-child{width:26%}
-.overview-table th:nth-child(3){width:18%}
+.overview-table th:nth-child(3){width:24%}
 .overview-table th:last-child{width:78px}
 .row-actions{gap:4px;align-items:center;justify-content:flex-end}
 .row-actions button{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;min-height:30px;padding:5px;margin:0;border:1px solid var(--border);border-radius:5px;background:#f6f8f4}
@@ -32,7 +32,7 @@
   #overview .section-heading h2{font-size:18px}
   #overview .toolbar .button{flex:0 1 auto}
   .overview-table,.overview-table thead,.overview-table tbody{display:block}
-  .overview-table tr{display:grid;grid-template-columns:minmax(0,1fr) 68px 68px;column-gap:8px}
+  .overview-table tr{display:grid;grid-template-columns:minmax(0,1fr) 88px 68px;column-gap:8px}
   .overview-table th{width:auto!important;border:0;padding:4px 0}
   .overview-table thead tr{border-bottom:1px solid var(--border)}
   .overview-table th:first-child{position:absolute;width:1px!important;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}
