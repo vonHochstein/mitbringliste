@@ -1,3 +1,4 @@
+import { prepareSinglePlayGif } from "./gif.js?v=20261006-12";
 import { config } from "./config.js?v=20261006-1";
 import { createApi, normalizeEntry, validateEntry, validateRows, sortEntries } from "./core.js";
 
@@ -171,10 +172,39 @@ $("confirm-delete").addEventListener("click", async () => {
   finally { setMutationBusy(false, $("delete-dialog")); }
 });
 window.addEventListener("hashchange", showView);
-$("easteregg").addEventListener("click", () => {
-  const source = new URL("./assets/easteregg.gif", import.meta.url);
-  source.searchParams.set("play", Date.now());
-  $("easteregg-gif").src = source.href;
+let eggPlaying = false;
+let eggData;
+$("easteregg").addEventListener("click", async () => {
+  if (eggPlaying) return;
+  eggPlaying = true;
+  const button = $("easteregg");
+  const image = $("easteregg-gif");
+  const poster = new URL("./assets/easteregg-poster.png", import.meta.url).href;
+  button.setAttribute("aria-disabled", "true");
+  let source;
+  try {
+    if (!eggData) {
+      const response = await fetch(new URL("./assets/easteregg.gif?v=20261006-12", import.meta.url), { signal: AbortSignal.timeout(10000) });
+      if (!response.ok) throw new Error("GIF unavailable");
+      eggData = prepareSinglePlayGif(await response.arrayBuffer());
+    }
+    source = URL.createObjectURL(eggData.blob);
+    await new Promise((resolve, reject) => {
+      image.onload = resolve;
+      image.onerror = reject;
+      image.src = source;
+    });
+    await new Promise(resolve => setTimeout(resolve, eggData.duration));
+  } catch {
+    notice("Das Easteregg konnte nicht geladen werden. Versuch es noch einmal.", "error");
+  } finally {
+    image.onload = null;
+    image.onerror = null;
+    image.src = poster;
+    if (source) URL.revokeObjectURL(source);
+    button.removeAttribute("aria-disabled");
+    eggPlaying = false;
+  }
 });
 populateNames($("person-name"));
 populateNames($("edit-name"));
