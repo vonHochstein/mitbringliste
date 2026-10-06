@@ -50,3 +50,9 @@
 
 /* Route headings receive screen-reader focus without a visual control outline. */
 h2[tabindex="-1"]:focus{outline:none}
+
+.header{position:relative}
+.header .brand{max-width:calc(100% - 82px)}
+.easteregg{position:absolute;top:0;right:0;display:inline-flex;align-items:center;gap:2px;min-height:32px;padding:4px 5px;border:0;border-radius:8px;background:transparent;color:#bd827b;font-size:17px;font-weight:650;line-height:1;white-space:nowrap}
+.easteregg span{display:inline-block;transform-origin:50% 0}
+.easteregg:hover,.easteregg:active{background:#f0e5df}
