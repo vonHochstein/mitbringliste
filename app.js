@@ -171,18 +171,10 @@ $("confirm-delete").addEventListener("click", async () => {
   finally { setMutationBusy(false, $("delete-dialog")); }
 });
 window.addEventListener("hashchange", showView);
-let eggAnimations = [];
 $("easteregg").addEventListener("click", () => {
-  eggAnimations.forEach(animation => animation.cancel());
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  eggAnimations = [...$("easteregg").querySelectorAll("span")].map((half, index) => {
-    const side = index === 0 ? -1 : 1;
-    const movement = [0, 5, -4, 3, -2, 0];
-    const angles = [0, 9, -7, 5, -3, 0];
-    return half.animate(movement.map((y, step) => ({ transform: `translateY(${y}px) rotate(${angles[step] * side}deg)` })), {
-      duration: 1000, delay: index * 70, easing: "ease-in-out",
-    });
-  });
+  const source = new URL("./assets/easteregg.gif", import.meta.url);
+  source.searchParams.set("play", Date.now());
+  $("easteregg-gif").src = source.href;
 });
 populateNames($("person-name"));
 populateNames($("edit-name"));
