@@ -58,7 +58,11 @@ function renderEntries(entries) {
     for (const [label, action] of [["Bearbeiten", openEdit], ["Löschen", openDelete]]) {
       const button = document.createElement("button");
       button.type = "button";
-      button.textContent = label;
+      const icon = label === "Bearbeiten"
+        ? '<path d="m16 3 5 5-12 12H4v-5L16 3Z"/><path d="m14 5 5 5"/>'
+        : '<path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/>';
+      button.innerHTML = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${icon}</svg>`;
+      button.title = label;
       button.setAttribute("aria-label", `${label}: ${entry.mitbringsel} von ${entry.nutzer}`);
       button.addEventListener("click", () => action(entry));
       actions.append(button);
@@ -86,6 +90,7 @@ function showView() {
   let route = location.hash.slice(1) || "start";
   if (!(route in views)) route = "start";
   if (route === "dinge" && !name) { location.hash = "name"; return; }
+  document.body.classList.toggle("compact-overview", route === "uebersicht");
   Object.entries(views).forEach(([key, view]) => { view.hidden = key !== route; });
   if (route === "uebersicht") loadEntries();
   if (route === "name") $("person-name").value = name;
