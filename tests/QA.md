@@ -10,11 +10,19 @@
 - Whitespace-only name and partial rows block saving.
 - Responsive layout inspected at 390 and 320 CSS pixels using a same-origin iframe fixture. No horizontal overflow; mobile form screenshot saved locally. This is layout testing, not testing on a physical phone.
 
+## Passed against Supabase (6 October 2026)
+
+- Project `mitbringliste` in `Testprojekte`, Frankfurt; organization uses Free tier.
+- Existing schema matches schema.sql; RLS enabled, four policies for anon, only the three content columns allow UPDATE. No table grants to authenticated or PUBLIC.
+- Security Advisor reports no findings.
+- `node tests/verify-supabase.js`: public read, batch insert, independent read, targeted update, atomic rejection of an invalid batch, and targeted delete all passed.
+- All uniquely marked test records were removed; zero TEST rows remain.
+- GitHub Pages is enabled; the landing page is reachable at https://vonhochstein.github.io/mitbringliste/.
+
 ## Pending
 
-- Execute schema in the dedicated Supabase project and run `node tests/verify-supabase.js` after setting up `config.js`.
-- Verify actual RLS/schema via administrative access when the Supabase connection can access Testprojekte.
-- Enable GitHub Pages, verify final URL with the real database and test from a physical second device.
+- Verify the deployed database configuration and browser flow with the real database.
+- Physical second-device testing is not available in this environment; separate browser clients are used instead.
 
 ## Test fixture
 
