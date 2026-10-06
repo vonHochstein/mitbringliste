@@ -15,6 +15,8 @@ Die Website wird unter https://vonhochstein.github.io/mitbringliste/ erreichbar,
 
 `python3 -m http.server 8000` im Projektordner starten, dann http://localhost:8000 öffnen. `npm test` führt die Tests für Formularvalidierung, Sortierung und Datenzugriff aus. Kein Build und keine Laufzeitabhängigkeiten nötig.
 
+Browserprüfungen sind in `tests/QA.md` dokumentiert. Nach der Einrichtung prüft `node tests/verify-supabase.js` die echte Datenbank mit eindeutig markierten Testzeilen und entfernt diese anschließend wieder.
+
 ## Daten und Verhalten
 
 `mitbringsel`: `id` (UUID), `nutzer`, `mitbringsel`, `anzahl` (Text; in der Oberfläche „Menge“). Leerzeilen werden ignoriert, Teilzeilen blockieren das Speichern. Neue Zeilen gehen gemeinsam in einen Request. Alle Nutzereingaben werden als Text angezeigt. Aktualisierung beim Öffnen der Übersicht oder über „Aktualisieren“; keine automatische Synchronisierung.
